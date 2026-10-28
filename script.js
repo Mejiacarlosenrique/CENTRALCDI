@@ -62,19 +62,8 @@
       el.textContent = cur;
       if (cur < target) requestAnimationFrame(tick);
     };
-    setTimeout(tick, 350);
+    setTimeout(tick, 150);
   });
-
-  /* --------------------------- REVEAL ON SCROLL -------------------------- */
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add("is-in"), i * 90);
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-  $$(".reveal").forEach((el) => io.observe(el));
 
   /* ---------------------- TOPBAR STUCK STATE ---------------------------- */
   const topbar = $("#topbar");
