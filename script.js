@@ -11,7 +11,7 @@
      para que la intranet quede siempre disponible durante la venta.          */
   $$("a.tool, a.access").forEach((a) => {
     const href = a.getAttribute("href") || "";
-    if (href && href !== "#" && !href.startsWith("javascript:")) {
+    if (/^https?:/.test(href)) { // las páginas propias de la intranet (ej. legalidad.html) abren en la misma pestaña
       a.setAttribute("target", "_blank");
       a.setAttribute("rel", "noopener noreferrer");
       if (!a.title) a.title = "Se abre en una pestaña nueva";
@@ -208,7 +208,9 @@
   }
   function activate(item) {
     closePalette();
-    if (item.href) {
+    if (item.href && !/^https?:/.test(item.href)) {
+      location.href = item.href;
+    } else if (item.href) {
       window.open(item.href, "_blank", "noopener");
     } else if (item.soon) {
       handleSoon(item.el);
