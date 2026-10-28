@@ -40,7 +40,7 @@
     const now = new Date();
     const h = now.getHours();
     const salute = h < 12 ? "Buenos días" : h < 19 ? "Buenas tardes" : "Buenas noches";
-    if (greetingEl) greetingEl.textContent = `${salute}, equipo CDI`;
+    if (greetingEl) greetingEl.innerHTML = `${salute}, <span class="fire-text">equipo CDI</span>`;
     if (clockEl) {
       clockEl.textContent = now.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" }) +
         " · " + now.toLocaleDateString("es-ES", { weekday: "short", day: "numeric", month: "short" });
@@ -157,9 +157,9 @@
   /* ======================= COMMAND PALETTE ============================== */
   // Índice de comandos, derivado del DOM para mantenerse siempre sincronizado.
   const ACCENTS = {
-    comercial:     ["#F58634", "#E8541E"],
-    entrenamiento: ["#7c9cff", "#6a5cff"],
-    rrhh:          ["#35c46a", "#16a34a"],
+    comercial:     ["#FF8A3D", "#FA5900"],
+    entrenamiento: ["#F7CF5A", "#E6A817"],
+    rrhh:          ["#FF6B4A", "#E8331C"],
   };
   const DEPT_LABEL = {
     comercial: "Gestión Comercial",
@@ -198,7 +198,7 @@
     pList.innerHTML = "";
     pEmpty.hidden = results.length > 0;
     results.forEach((it, i) => {
-      const [a1, a2] = ACCENTS[it.dept] || ["#E8541E", "#F58634"];
+      const [a1, a2] = ACCENTS[it.dept] || ["#FF8A3D", "#FA5900"];
       const li = document.createElement("li");
       li.className = "palette__item";
       li.setAttribute("role", "option");
