@@ -374,6 +374,30 @@ a.tool:hover .tool__arrow { opacity: 1; transform: translate(0,0); color: var(--
   .site-foot { flex-direction: column; align-items: flex-start; }
 }
 
+/* ------------------------ DATOS BANCARIOS (copiar) ---------------------- */
+.bank { display: grid; gap: 14px; }
+.bank__rows { margin: 0; border-radius: var(--radius-sm); background: var(--tile); border: 1px solid var(--line); overflow: hidden; }
+.bank__row { display: grid; grid-template-columns: 150px 1fr auto; align-items: center; gap: 12px;
+  padding: 13px 16px; border-top: 1px solid var(--line-2); }
+.bank__row:first-child { border-top: 0; }
+.bank__row dt { font-size: 12px; color: var(--muted); font-weight: 600; }
+.bank__row dd { margin: 0; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.bank__row--key dd { font-size: 19px; letter-spacing: .02em; color: var(--cdi-2); }
+.bank__copy, .bank__all { font: inherit; cursor: pointer; border-radius: var(--radius-xs); transition: background .2s, border-color .2s, transform .2s; }
+.bank__copy { font-size: 12.5px; font-weight: 700; padding: 7px 12px; color: var(--text); background: var(--kbd); border: 1px solid var(--line); }
+.bank__copy:hover { border-color: var(--cdi-2); }
+.bank__copy.is-done, .bank__all.is-done { border-color: #35c46a; color: #35c46a; }
+.bank__all { font-size: 14.5px; font-weight: 800; padding: 15px 18px; color: #fff; border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--cdi-2), var(--cdi)); }
+.bank__all:hover { transform: translateY(-2px); }
+.bank__all.is-done { background: rgba(53,196,106,.12); }
+@media (max-width: 560px) {
+  .bank__row { grid-template-columns: 1fr auto; gap: 2px 12px; }
+  .bank__row dt { grid-column: 1; }
+  .bank__row dd { grid-column: 1; grid-row: 2; }
+  .bank__copy { grid-column: 2; grid-row: 1 / span 2; }
+}
+
 /* --------------------------- A11Y / MOTION ------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }

@@ -102,6 +102,24 @@
     toastT = setTimeout(() => toast.classList.remove("is-visible"), 2600);
   }
 
+  /* ------------------ COPIAR AL PORTAPAPELES (data-copy) ---------------- */
+  $$("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const text = btn.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const ta = document.createElement("textarea"); // respaldo para navegadores sin clipboard API
+        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove();
+      }
+      const label = btn.textContent;
+      btn.textContent = "✓ Copiado"; btn.classList.add("is-done");
+      setTimeout(() => { btn.textContent = label; btn.classList.remove("is-done"); }, 1800);
+      showToast(text.includes("\n") ? "Datos copiados. Pégalos en el chat del cliente." : `Copiado: ${text}`);
+    });
+  });
+
   /* --------------------- PLACEHOLDERS "PRÓXIMAMENTE" -------------------- */
   function handleSoon(el) {
     const name = el.querySelector(".tool__name")?.textContent?.trim()
