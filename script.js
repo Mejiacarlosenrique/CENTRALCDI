@@ -92,8 +92,10 @@
   }
 
   /* ------------------ COPIAR AL PORTAPAPELES (data-copy) ---------------- */
-  $$("[data-copy]").forEach((btn) => {
-    btn.addEventListener("click", async () => {
+  document.addEventListener("click", async (e) => {
+    const btn = e.target.closest("[data-copy]");
+    if (!btn) return;
+    {
       const text = btn.dataset.copy;
       try {
         await navigator.clipboard.writeText(text);
@@ -105,8 +107,8 @@
       const label = btn.textContent;
       btn.textContent = "✓ Copiado"; btn.classList.add("is-done");
       setTimeout(() => { btn.textContent = label; btn.classList.remove("is-done"); }, 1800);
-      showToast(text.includes("\n") ? "Datos copiados. Pégalos en el chat del cliente." : `Copiado: ${text}`);
-    });
+      showToast(text.includes("\n") ? "Copiado. Pégalo en el chat del cliente." : /^https?:/.test(text) ? "Link copiado." : `Copiado: ${text}`);
+    }
   });
 
   /* --------------------- PLACEHOLDERS "PRÓXIMAMENTE" -------------------- */

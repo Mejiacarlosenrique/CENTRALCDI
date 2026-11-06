@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Links de pago de CDI para copiar y enviar al cliente." />
+  <meta name="theme-color" content="#070707" />
+  <title>Links de Pago · CDI</title>
+  <link rel="icon" type="image/png" href="favicon.png?v=1">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- la fuente carga sin bloquear: la página se muestra de inmediato y la letra cambia al llegar -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb--a"></span>
+    <span class="orb orb--b"></span>
+    <span class="orb orb--c"></span>
+    <span class="grid-lines"></span>
+  </div>
+
+  <!-- ===================== TOPBAR ===================== -->
+  <header class="topbar" id="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="index.html" aria-label="Volver a la Intranet CDI">
+        <span class="brand__mark">
+          <img src="logo-circulo.png" alt="" width="38" height="38">
+        </span>
+        <span class="brand__text">
+          <strong>CDI</strong>
+          <em>Intranet Comercial</em>
+        </span>
+      </a>
+
+      <button class="cmd" id="cmdOpen" type="button" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.2-3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Buscar herramienta…</span>
+        <kbd>⌘K</kbd>
+      </button>
+
+      <div class="topbar__right">
+        <span class="clock" id="clock" aria-hidden="true">—</span>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Cambiar tema">
+          <svg class="ic-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></g></svg>
+          <svg class="ic-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>
+        </button>
+        <div class="avatar" id="avatar" title="Colaborador CDI">CD</div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero reveal">
+      <p class="hero__eyebrow">
+        <a href="index.html" style="color:inherit;text-decoration:none">← Volver a la intranet</a>
+      </p>
+      <h1 class="hero__title">Links de <span class="fire-text">Pago</span></h1>
+      <p class="hero__sub">
+        Busca el valor, copia el link y pégalo en el chat del cliente. Paga con PSE, tarjeta de crédito, Bancolombia o BreB QR.
+      </p>
+    </section>
+
+    <!-- ===================== LINKS (se leen en vivo de la hoja de Prix) ===================== -->
+    <section class="departments" aria-label="Links de pago">
+      <article class="dept dept--comercial reveal" data-accent="comercial" id="dep-pagos">
+        <div class="dept__glow" aria-hidden="true"></div>
+        <header class="dept__head">
+          <div class="dept__badge">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 8h18v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 11h18" stroke="currentColor" stroke-width="1.8"/><path d="M7 6l5-2 5 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="dept__titles">
+            <span class="dept__kicker">Prix · COP</span>
+            <h2 class="dept__name">Elige el valor</h2>
+            <p class="dept__desc">El costo de la transacción se suma al valor cuando el cliente paga.</p>
+          </div>
+          <span class="dept__count" id="payCount">—</span>
+        </header>
+
+        <label class="pay-search">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.2-3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="text" id="paySearch" inputmode="numeric" placeholder="Escribe el valor, ej. 1.500.000" autocomplete="off">
+        </label>
+        <p class="pay-empty" id="payEmpty" hidden>No hay un link exacto para ese valor. Estos son los más cercanos:</p>
+        <div class="pay-grid" id="payGrid"></div>
+      </article>
+    </section>
+
+    <footer class="site-foot">
+      <span>© <span id="year">2026</span> CDI · Consultoría de Importación</span>
+      <span class="site-foot__mid" id="paySrc">Plataforma interna del equipo comercial</span>
+      <span class="site-foot__ver"><a href="index.html" style="color:inherit">Volver a la intranet</a></span>
+    </footer>
+  </main>
+
+  <!-- ===================== COMMAND PALETTE ===================== -->
+  <div class="palette" id="palette" hidden>
+    <div class="palette__backdrop" data-close></div>
+    <div class="palette__panel" role="dialog" aria-modal="true" aria-label="Buscar">
+      <div class="palette__input">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.2-3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="text" id="paletteInput" placeholder="Buscar…" autocomplete="off" />
+        <kbd data-close>Esc</kbd>
+      </div>
+      <ul class="palette__list" id="paletteList"></ul>
+      <div class="palette__empty" id="paletteEmpty" hidden>Sin resultados.</div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+  <script>
+  /* Links de pago: se leen en vivo de la hoja de Prix (Drive). Si no carga, se usa la copia de abajo. */
+  (function () {
+    const SHEET = "https://docs.google.com/spreadsheets/d/1gKNBCJsc65gNdHEGIGrCmphxW17P3t09/export?format=csv&gid=335331937";
+    const SNAPSHOT = [{"v":100000,"u":"https://app.prix.la/pay/11612acfd3def08c011c7781fba551d3d598f6cfbdd5d1977d7fb8f6f084f769"},{"v":150000,"u":"https://app.prix.la/pay/d3667fd96fb57c6811fdc2dd263702ca089a8bc8ce66cede2c3eac03c828744c"},{"v":200000,"u":"https://app.prix.la/pay/369ff0a450e36a30bda1520d740765903bb6760660f48fe419be4e8939b6c3eb"},{"v":250000,"u":"https://app.prix.la/pay/bed06da7934954b5d166e49ca3aa16fb9bddb3fd0dcd0773e587a16607672ee3"},{"v":300000,"u":"https://app.prix.la/pay/0b9ee80ed881215d09478fb22251682302e6e0a3473cee012ab32d60d7dffe7b"},{"v":350000,"u":"https://app.prix.la/pay/ff168d28f0657d7de348baa249972c0216526cc7713d1aa0d7b7f2409dbd4840"},{"v":400000,"u":"https://app.prix.la/pay/58a1638b78b4368bccc8742fdc3f1ee7366aee5942be5f7c33850abaab535431"},{"v":450000,"u":"https://app.prix.la/pay/d4a563075ec713bf7f82c201e214ea55450a669ac8b4e1d3b30efa1084cf549f"},{"v":500000,"u":"https://app.prix.la/pay/78dffe34482a6e401aabebb4adee5f223d2dd1a11c4905470f0d73aaaa9183a6"},{"v":550000,"u":"https://app.prix.la/pay/54ba89ec8b3bdf2bb59b1d07a71b89715d6cb6c1802a6ac7d11b8710a4172597"},{"v":600000,"u":"https://app.prix.la/pay/3a4953c204a396ff87d94b84dd3d8db1e15de3fbdb24e585255b8232981e6caa"},{"v":650000,"u":"https://app.prix.la/pay/e6bd5126733a2829ff014898ec75ab72b2b0aa58df1e40da82671fee97e15627"},{"v":670000,"u":"https://app.prix.la/pay/44e567806d8161efdcaed5c2fc1e79fece55754ae4e4aafaa8b254f18c48e4ba"},{"v":700000,"u":"https://app.prix.la/pay/14cf4f8a48fc2c8e02bc6e913d996c0bec35559c4f414fecbd7921541463e49b"},{"v":750000,"u":"https://app.prix.la/pay/3cb0b871f3daafbdaf51cbfba0591863d0ff23d4cd192615c0d4dcbd1d77d6f7"},{"v":800000,"u":"https://app.prix.la/pay/faf87cd54108b668844cf08767a65e951f69ee854abc4f2b6eb3119775c93605"},{"v":850000,"u":"https://app.prix.la/pay/f655234f79ec9ebac2ed4fa8c9446aaece3a7863a2d3a5df5374b21dae27d4e4"},{"v":900000,"u":"https://app.prix.la/pay/6c5298beee39d35bc43f6c05c29acef7548872632319456880a3f82c5bf5225c"},{"v":950000,"u":"https://app.prix.la/pay/a30637c65e9680b9a49fdda2505625d7f012d764397db9a732fb770d1d6d0bff"},{"v":1000000,"u":"https://app.prix.la/pay/e49ff85616d2abb2a87e5b1fcc8d5a8300f355a824cb203b53f9fbbc5a41d1f1"},{"v":1050000,"u":"https://app.prix.la/pay/97d7b283e580cbd616848d1563ccca744685482ac334f21b7ce12ef7551be677"},{"v":1100000,"u":"https://app.prix.la/pay/a9c23f808a653cbe679471a33e7dd75360512bc5a36ebcfae778d6967c7193e9"},{"v":1150000,"u":"https://app.prix.la/pay/175c4e6a2a9f0980cef1d5f3283a7253ebb83bdc10cf31884a06f55388564c09"},{"v":1200000,"u":"https://app.prix.la/pay/47bef66e17efb7b38d6ce91e05c8ac60bf23e829734e093f1d763b9f914ce468"},{"v":1250000,"u":"https://app.prix.la/pay/14b5037699ddc7e25d74b2142bfb2238510177f11e87eb5ad71a627ad10eaf1b"},{"v":1300000,"u":"https://app.prix.la/pay/6821c468d43648a46ea0a86418a43908380458c4af4046595edf30d3791e1470"},{"v":1350000,"u":"https://app.prix.la/pay/bd1408674bc8cce745a99f52f86b369af3021bbc2961663498a567edb460b61d"},{"v":1400000,"u":"https://app.prix.la/pay/242885b7442971e228b4e0ad76590ab9799382f786723467a2722119fdc3a664"},{"v":1450000,"u":"https://app.prix.la/pay/4a2f8477f4424539f5f2a735492186d8571e146878bf31a631c52cdad4608c09"},{"v":1500000,"u":"https://app.prix.la/pay/c7bd8ea785392b024c507c4435ae402e3966ca6bec22623a75ddfe87dff7f432"},{"v":1530000,"u":"https://app.prix.la/pay/48a96ce4f27964254b00f2ef11aa5f03d9e124ecc57aa63de400b336f14fc366"},{"v":1550000,"u":"https://app.prix.la/pay/562a59e1212ed1564b5927dfef5f95a53d26a2c876f630b99850765660206bcc"},{"v":1600000,"u":"https://app.prix.la/pay/7e32fa97495d08c6ef3d00770615ff0d4a4c8065d4ccc43d10571296e7d542ca"},{"v":1650000,"u":"https://app.prix.la/pay/a7ba507cd375aae981ac6f8c1d19bb57b300de468551d452e878958ac44e7b67"},{"v":1700000,"u":"https://app.prix.la/pay/52242c10ba86e0306e7365ceb4c82123a48b39edce0b5101106ae3ce37f918a3"},{"v":1750000,"u":"https://app.prix.la/pay/0262756797224efed02428ceac15a9039e8e108893850edaaf54dcbcaa0e0baa"},{"v":1800000,"u":"https://app.prix.la/pay/8dfc29328bbdec883eceb3290621fbd814f09ccb6922dad8c0d8fa7ab083015b"},{"v":1850000,"u":"https://app.prix.la/pay/9d17a1b33f550810ec8116ad19677c48f73cc78f3c72cf9070fef9984357e934"},{"v":1900000,"u":"https://app.prix.la/pay/d0df01e64c105f829833b9b538fc14d17ca8428269b6bbb4cf3501cbca326f86"},{"v":1950000,"u":"https://app.prix.la/pay/a0187362fd4de1811f3963a394afb286deedde085de304ba0eaa3c667ad9b8d4"},{"v":2000000,"u":"https://app.prix.la/pay/80d06b45defbb0579b2dc0c6438b90f585a1af05ccea7096ad1f77aaa5083eb0"},{"v":2050000,"u":"https://app.prix.la/pay/1920e24176c738ed389e141a06b9188b2502b7af553e36b3b24151496d18971e"},{"v":2100000,"u":"https://app.prix.la/pay/e9f0ae14fe3c6473dd04dfa4b44b3dd9c2b6948474cdde662798d67a7ae2bce9"},{"v":2150000,"u":"https://app.prix.la/pay/967b58de86a20ecbaf9f431ad20a33ba84f6cb5a96ad30d931dcdc01ad3d2d2f"},{"v":2200000,"u":"https://app.prix.la/pay/4be3c41c26eda208f927eace49ef3648355956d202c7ed144a010f8e1f073115"},{"v":2250000,"u":"https://app.prix.la/pay/d5c4cb40bc944ec3b45d2c9871a090ecd90d5ce17d21780b137711181c322974"},{"v":2300000,"u":"https://app.prix.la/pay/014d8b95680fc6cbdc78062af43f75c68ba46bbf3f41501fc2dbf456314a4415"},{"v":2350000,"u":"https://app.prix.la/pay/b79254175fb69a61e2f025d394e32cd7847e000df4472a667788f1f45cbf3115"},{"v":2400000,"u":"https://app.prix.la/pay/23e787d01d33b3a0fab203af324b7339bf6aa208edc8f5d2adc3268093fe0599"},{"v":2450000,"u":"https://app.prix.la/pay/677df8954e461a59f8dea56c74820dd5953b83d435885360f02ae560c93166d5"},{"v":2500000,"u":"https://app.prix.la/pay/d9f8152429a69a915c31f2cac8e32a87f7e49b39885dda15c0f93a0e79efb9f2"},{"v":2550000,"u":"https://app.prix.la/pay/6d4c6b198b4dfc86d9b664b042f83c18bc3fc46c99dd58e6a1868f1ab1180df3"},{"v":2600000,"u":"https://app.prix.la/pay/250cc0daeb60a9f2efaddf740eb3b86829d9e9502189d6504809fadda461c020"},{"v":2650000,"u":"https://app.prix.la/pay/6e6b67ff8a5e2c827e68d5465550350af062a3f756cdd4c348aff1c9d828c979"},{"v":2700000,"u":"https://app.prix.la/pay/2a502c0a682105b49056b6bc466e2156de29336d9fc758fde05bf7e3cd64ef06"},{"v":2750000,"u":"https://app.prix.la/pay/019c3a6dbb386ec60624f9881b0be1c79c1ff2d6be620bd414d5ffb02314e9f0"},{"v":2800000,"u":"https://app.prix.la/pay/5bc4948b776722033589364d3d11602a5b6b0e67b80ba1e473b8b317ce8a0ead"},{"v":2950000,"u":"https://app.prix.la/pay/d402f59bac3e4ea82811a850c070c3a2ca22d671cad500b8a43b0822d178bfc5"},{"v":3000000,"u":"https://app.prix.la/pay/e5ed0f89ed75e81e9ed4fc7461f402a4ffbd9fe60e4acd11fe67a90dae400588"},{"v":3300000,"u":"https://app.prix.la/pay/332cd6448199b22906ff608df5796e615dc89ed45d4c50932ff05c030c75ea90"},{"v":3500000,"u":"https://app.prix.la/pay/37df9c47ddb1d0c2fe71293df752a8bf06d1bd0d5667fd1f3921c9e0c27db431"},{"v":3700000,"u":"https://app.prix.la/pay/183f41bbe208745e255ed51eef4cfbd875c75b073e340a394a6f477e8c491230"},{"v":3779000,"u":"https://app.prix.la/pay/e3aacf9864f374d4babcd243538d571484aad5d39f505b609afd483989767d5d"},{"v":3900000,"u":"https://app.prix.la/pay/00c760edbbf33360a97a1f118d5fd75047ab2a72274d5d18fab8844d8d75a922"},{"v":4000000,"u":"https://app.prix.la/pay/421a67061cad3f3fc69c0c7cefcb7f89ad3c9583846437e5d021f1f4b04da45a"},{"v":4200000,"u":"https://app.prix.la/pay/f698c6b38b1df2a2fdb6fc12e42cc43f62e9ac6536aa17463b37ff7c02fb7942"},{"v":4400000,"u":"https://app.prix.la/pay/a54f4df06b58d99024c286153479d31d09b5dce16e6c9b4e0a9872b22facb34d"},{"v":4500000,"u":"https://app.prix.la/pay/3a89d9e5eb1feebb6d5d4a36166b2118042b4e66b91ce6194d4b9974045b3c4f"},{"v":4656000,"u":"https://app.prix.la/pay/0213c540531c533f0938bd7d5dd50676bbe3c3429a306757c62a7fb83c4f7cc3"},{"v":5000000,"u":"https://app.prix.la/pay/302aca790243a72f7f1d5da840c3f4d65acc0b1c1629d9d4eb2b9ad4b0adcd21"},{"v":5500000,"u":"https://app.prix.la/pay/d5933b59d80b3907fec485f71cd46ff42515b3c28d8ff40e1dcda2cee3e6bb31"},{"v":6000000,"u":"https://app.prix.la/pay/8763c600249c11425b1fe9defd2a48623df26f522de4992a19f21db51c53a7a8"}];
+    const grid = document.getElementById("payGrid"), search = document.getElementById("paySearch");
+    const empty = document.getElementById("payEmpty"), count = document.getElementById("payCount");
+    const cop = (n) => "$" + n.toLocaleString("es-CO");
+    const msg = (l) => `Hola 👋 Este es tu link de pago de ${cop(l.v)} COP a Círculo de Importadores:\n${l.u}\n\nPuedes pagar con PSE, tarjeta de crédito, Bancolombia o BreB QR. El costo de la transacción se suma al valor al pagar.`;
+    let LINKS = SNAPSHOT;
+
+    function parseCSV(t) {
+      const rows = []; let row = [], f = "", q = false;
+      for (let i = 0; i < t.length; i++) { const c = t[i];
+        if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+        else if (c === '"') q = true; else if (c === ",") { row.push(f); f = ""; }
+        else if (c === "\n") { row.push(f); rows.push(row); row = []; f = ""; } else if (c !== "\r") f += c; }
+      if (f || row.length) { row.push(f); rows.push(row); }
+      return rows;
+    }
+    function card(l) {
+      const esc = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+      return `<div class="pay-card">
+        <div class="pay-card__val">${cop(l.v)}<small>COP</small></div>
+        <div class="pay-card__actions">
+          <button class="pay-btn pay-btn--main" type="button" data-copy="${esc(msg(l))}">Copiar mensaje</button>
+          <button class="pay-btn" type="button" data-copy="${esc(l.u)}">Solo link</button>
+          <a class="pay-btn pay-btn--ghost" href="${esc(l.u)}" target="_blank" rel="noopener" title="Abrir el link">↗</a>
+        </div></div>`;
+    }
+    function render() {
+      const digits = search.value.replace(/[^0-9]/g, "");
+      let list = LINKS;
+      if (digits) {
+        const n = +digits;
+        const exact = LINKS.filter((l) => String(l.v).startsWith(digits) || l.v === n);
+        // si no hay coincidencia, muestra los 6 valores más cercanos
+        list = exact.length ? exact : [...LINKS].sort((a, b) => Math.abs(a.v - n) - Math.abs(b.v - n)).slice(0, 6).sort((a, b) => a.v - b.v);
+        empty.hidden = !!exact.length;
+      } else empty.hidden = true;
+      grid.innerHTML = list.map(card).join("");
+      count.textContent = LINKS.length + " links";
+    }
+    search.addEventListener("input", render);
+    render();
+    fetch(SHEET + "&_=" + Date.now(), { cache: "no-store" })
+      .then((r) => (r.ok ? r.text() : Promise.reject(r.status)))
+      .then((t) => {
+        const live = parseCSV(t).slice(1)
+          .map((r) => ({ v: +String(r[2] || "").replace(/[^0-9]/g, ""), u: String(r[3] || "").trim() }))
+          .filter((l) => l.v && /^https?:/.test(l.u)).sort((a, b) => a.v - b.v);
+        if (live.length) { LINKS = live; render(); document.getElementById("paySrc").textContent = "Links en vivo desde la hoja de Prix"; }
+      })
+      .catch(() => { document.getElementById("paySrc").textContent = "Mostrando la última copia guardada de los links"; });
+  })();
+  </script>
+</body>
+</html>

@@ -420,6 +420,32 @@ a.tool--primary:hover .tool__arrow { color: #fff; }
   .bank__copy { grid-column: 2; grid-row: 1 / span 2; }
 }
 
+/* ----------------------------- LINKS DE PAGO ----------------------------- */
+.pay-search { display: flex; align-items: center; gap: 10px; padding: 0 16px; margin-bottom: 18px;
+  border-radius: var(--radius-sm); background: var(--tile); border: 1px solid var(--line); color: var(--muted);
+  transition: border-color .2s; }
+.pay-search:focus-within { border-color: var(--cdi); color: var(--cdi); }
+.pay-search input { flex: 1; min-width: 0; background: none; border: 0; outline: 0; color: var(--text);
+  font: inherit; font-size: 16px; font-weight: 600; padding: 15px 0; }
+.pay-search input::placeholder { color: var(--faint); font-weight: 500; }
+.pay-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.pay-card { display: flex; flex-direction: column; gap: 14px; padding: 16px; border-radius: var(--radius-sm);
+  background: var(--tile); border: 1px solid var(--line); transition: border-color .2s, transform .2s; }
+.pay-card:hover { border-color: color-mix(in srgb, var(--cdi) 45%, var(--line)); transform: translateY(-2px); }
+.pay-card__val { font-size: 22px; font-weight: 800; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.pay-card__val small { font-size: 11px; font-weight: 700; color: var(--muted); margin-left: 6px; letter-spacing: .04em; }
+.pay-card__actions { display: flex; gap: 8px; }
+.pay-btn { font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; padding: 9px 12px; border-radius: var(--radius-xs);
+  color: var(--text); background: var(--kbd); border: 1px solid var(--line); white-space: nowrap;
+  display: inline-grid; place-items: center; transition: border-color .2s, background .2s, transform .2s; }
+.pay-btn:hover { border-color: var(--cdi-2); }
+.pay-btn--main { flex: 1; color: #fff; border-color: transparent; background: var(--fire);
+  box-shadow: 0 10px 22px -14px rgba(250,89,0,.9); }
+.pay-btn--main:hover { transform: translateY(-1px); border-color: transparent; }
+.pay-btn--ghost { width: 38px; padding: 9px 0; }
+.pay-btn.is-done { color: #35c46a; border-color: #35c46a; background: rgba(53,196,106,.12); box-shadow: none; }
+.pay-empty { margin: 0 0 12px; font-size: 13px; color: var(--muted); }
+
 /* --------------------------- A11Y / MOTION ------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
