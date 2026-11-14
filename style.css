@@ -398,6 +398,17 @@ a.tool--primary:hover .tool__arrow { color: #fff; }
 
 /* ------------------------ DATOS BANCARIOS (copiar) ---------------------- */
 .bank { display: grid; gap: 14px; }
+.banks { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 18px; }
+.bank__head { display: flex; align-items: center; gap: 12px; min-height: 44px; }
+.banks .bank__row { grid-template-columns: 104px 1fr auto; }
+.banks .bank__row--key dd { font-size: 18px; letter-spacing: 0; white-space: nowrap; }
+.bank__flag { font-size: 26px; line-height: 1; }
+.bank__title { margin: 0; font-size: 17px; font-weight: 800; }
+.bank__sub { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
+.bank__doc { margin-left: auto; font-size: 12.5px; font-weight: 700; padding: 7px 12px; border-radius: var(--radius-xs);
+  color: var(--cdi); border: 1px solid color-mix(in srgb, var(--cdi) 45%, var(--line)); text-decoration: none; white-space: nowrap; }
+.bank__doc:hover { background: color-mix(in srgb, var(--cdi) 12%, transparent); }
+@media (max-width: 420px) { .banks { grid-template-columns: 1fr; } }
 .bank__rows { margin: 0; border-radius: var(--radius-sm); background: var(--tile); border: 1px solid var(--line); overflow: hidden; }
 .bank__row { display: grid; grid-template-columns: 150px 1fr auto; align-items: center; gap: 12px;
   padding: 13px 16px; border-top: 1px solid var(--line-2); }
