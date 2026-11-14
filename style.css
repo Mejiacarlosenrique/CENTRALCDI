@@ -228,7 +228,8 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 24px 64px; }
 /* --- tool tiles --- */
 .tools { display: grid; gap: 14px; }
 .tools--feature { grid-template-columns: 1.5fr 1fr 1fr; grid-auto-rows: 1fr; }
-.tools--feature .tool--primary { grid-row: span 2; }
+.tools--feature .tool--primary { grid-row: span 3; }
+.tools--feature > .tool:last-child { grid-column: span 2; } /* 6 herramientas: la última ocupa el ancho de dos */
 .tools--grid { grid-template-columns: repeat(3, 1fr); }
 
 .tool { position: relative; display: flex; flex-direction: column; gap: 14px; text-align: left;
@@ -390,6 +391,7 @@ a.tool--primary:hover .tool__arrow { color: #fff; }
   main { padding: 0 16px 48px; }
   .topbar__inner { padding: 11px 16px; gap: 10px; }
   .tools--feature, .tools--grid, .accesos { grid-template-columns: 1fr; }
+  .tools--feature > .tool:last-child { grid-column: auto; }
   .hero__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 16px 18px; width: 100%; }
   .stat__div { display: none; }
   .stat__label { font-size: 11px; }
