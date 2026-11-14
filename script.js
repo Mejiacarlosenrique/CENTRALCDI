@@ -115,7 +115,8 @@
   function handleSoon(el) {
     const name = el.querySelector(".tool__name")?.textContent?.trim()
       || el.textContent.replace(/próximamente/i, "").trim();
-    showToast(`“${name}” estará disponible muy pronto.`);
+    const blocked = el.querySelector(".badge--soon")?.textContent.trim() === "Bloqueado";
+    showToast(blocked ? `“${name}” está bloqueado por ahora.` : `“${name}” estará disponible muy pronto.`);
   }
   $$(".tool--soon").forEach((el) => {
     el.addEventListener("click", () => handleSoon(el));
