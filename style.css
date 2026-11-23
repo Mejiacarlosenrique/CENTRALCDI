@@ -427,7 +427,7 @@ a.tool--primary:hover .tool__arrow { color: #fff; }
 .bank__all:hover { transform: translateY(-2px); }
 .bank__all.is-done { background: rgba(53,196,106,.12); }
 @media (max-width: 560px) {
-  .bank__row { grid-template-columns: 1fr auto; gap: 2px 12px; }
+  .bank__row, .banks .bank__row { grid-template-columns: 1fr auto; gap: 2px 12px; }
   .bank__row dt { grid-column: 1; }
   .bank__row dd { grid-column: 1; grid-row: 2; }
   .bank__copy { grid-column: 2; grid-row: 1 / span 2; }
