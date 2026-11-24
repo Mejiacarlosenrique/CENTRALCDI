@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Links de pago personalizados de cada closer." />
+  <meta name="theme-color" content="#070707" />
+  <title>Link Personalizado Closer · CDI</title>
+  <link rel="icon" type="image/png" href="favicon.png?v=1">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- la fuente carga sin bloquear: la página se muestra de inmediato y la letra cambia al llegar -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb--a"></span>
+    <span class="orb orb--b"></span>
+    <span class="orb orb--c"></span>
+    <span class="grid-lines"></span>
+  </div>
+
+  <!-- ===================== TOPBAR ===================== -->
+  <header class="topbar" id="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="index.html" aria-label="Volver a la Intranet CDI">
+        <span class="brand__mark">
+          <img src="logo-circulo.png" alt="" width="38" height="38">
+        </span>
+        <span class="brand__text">
+          <strong>CDI</strong>
+          <em>Intranet Comercial</em>
+        </span>
+      </a>
+
+      <button class="cmd" id="cmdOpen" type="button" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.2-3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Buscar herramienta…</span>
+        <kbd>⌘K</kbd>
+      </button>
+
+      <div class="topbar__right">
+        <span class="clock" id="clock" aria-hidden="true">—</span>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Cambiar tema">
+          <svg class="ic-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></g></svg>
+          <svg class="ic-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>
+        </button>
+        <div class="avatar" id="avatar" title="Colaborador CDI">CD</div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero reveal">
+      <p class="hero__eyebrow"><a href="index.html" style="color:inherit;text-decoration:none">← Volver a la intranet</a></p>
+      <h1 class="hero__title">Link personalizado <span class="fire-text">Closer</span></h1>
+      <p class="hero__sub" id="closerHeroSub">Toca tu nombre para ver tus links. Así cada venta queda registrada a tu nombre.</p>
+    </section>
+
+    <section class="departments" aria-label="Links por closer">
+      <article class="dept dept--comercial reveal" data-accent="comercial" id="dep-closer">
+        <div class="dept__glow" aria-hidden="true"></div>
+        <header class="dept__head">
+          <div class="dept__badge">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div class="dept__titles">
+            <span class="dept__kicker">Paso 1</span>
+            <h2 class="dept__name">¿Quién eres?</h2>
+            <p class="dept__desc">Toca tu nombre y confirma que eres tú.</p>
+          </div>
+        </header>
+        <div class="closer-pick" id="closerPick" aria-label="Closers"></div>
+      </article>
+
+      <article class="dept dept--comercial reveal" data-accent="comercial" id="dep-closer-links" hidden>
+        <div class="dept__glow" aria-hidden="true"></div>
+        <header class="dept__head">
+          <div class="dept__badge closer-badge" id="closerInitial">—</div>
+          <div class="dept__titles">
+            <span class="dept__kicker">Links de <span id="closerName">—</span> · <button class="closer-switch" id="closerSwitch" type="button">No soy yo</button></span>
+            <h2 class="dept__name">Elige el valor</h2>
+            <p class="dept__desc">Copia el mensaje y pégalo en el chat del cliente.</p>
+          </div>
+          <span class="dept__count" id="closerCount">—</span>
+        </header>
+        <div class="pay-grid" id="closerGrid"></div>
+      </article>
+    </section>
+
+    <footer class="site-foot">
+      <span>© <span id="year">2026</span> CDI · Consultoría de Importación</span>
+      <span class="site-foot__mid" id="closerSrc">Plataforma interna del equipo comercial</span>
+      <span class="site-foot__ver"><a href="index.html" style="color:inherit">Volver a la intranet</a></span>
+    </footer>
+  </main>
+
+  <!-- ===================== COMMAND PALETTE ===================== -->
+  <div class="palette" id="palette" hidden>
+    <div class="palette__backdrop" data-close></div>
+    <div class="palette__panel" role="dialog" aria-modal="true" aria-label="Buscar">
+      <div class="palette__input">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.2-3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="text" id="paletteInput" placeholder="Buscar…" autocomplete="off" />
+        <kbd data-close>Esc</kbd>
+      </div>
+      <ul class="palette__list" id="paletteList"></ul>
+      <div class="palette__empty" id="paletteEmpty" hidden>Sin resultados.</div>
+    </div>
+  </div>
+
+  <div class="closer-confirm" id="closerConfirm" hidden>
+    <div class="closer-confirm__backdrop" data-cancel></div>
+    <div class="closer-confirm__panel" role="dialog" aria-modal="true" aria-labelledby="closerAsk">
+      <span class="closer-confirm__ini" id="closerAskIni">—</span>
+      <h2 class="closer-confirm__q" id="closerAsk">¿Realmente eres —?</h2>
+      <p class="closer-confirm__note">Solo usa tus propios links: así la venta queda a tu nombre.</p>
+      <div class="closer-confirm__actions">
+        <button class="pay-btn" type="button" data-cancel>Cancelar</button>
+        <button class="pay-btn pay-btn--main" type="button" id="closerYes">Sí, confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+  <script>
+  /* Link personalizado closer: cada closer tiene su pestaña en la hoja "Links closers" (Drive). Se lee en vivo; si no carga, usa la copia de abajo. */
+  (function () {
+    const SHEET_ID = "1zUeKpseuqUy1aMvJc5J9xDvls_RA0VcuwFRA0OLqHbk";
+    const CLOSERS = [{"name": "Karen", "gid": "381871734"}, {"name": "Yeison", "gid": "0"}, {"name": "Wendy", "gid": "481417323"}, {"name": "Lewin", "gid": "700801585"}];
+    const SNAPSHOT = {"Karen": [{"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-447usd-karen", "p": "$447USD", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-397usd-karen", "p": "$397USD", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-500000-karen", "p": "$500.000 COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-1000000cop-karen", "p": "$1.000.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-1500000cop-karen", "p": "$1.500.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-2000000cop-karen", "p": "$2.000.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-2300000cop-karen", "p": "$2.300.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-2500000cop-karen", "p": "$2.500.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-3000000", "p": "$3.000.000COP", "f": "Group"}], "Yeison": [{"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-447usd-y", "p": "$447USD", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-397usd-y", "p": "$397USD", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-500000cop-yeison", "p": "$500.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-1000000cop-yeison", "p": "$1.000.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-1-200-000cop-yeison", "p": "$1.200.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-1500000cop-yeison", "p": "$1.500.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-2000000cop-yeison", "p": "$2.000.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/cdi-vsl-2500000", "p": "$2.500.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-3000000cop-yeison", "p": "$3.000.000COP", "f": "Group"}], "Wendy": [{"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-447usd-wendy", "p": "$447USD", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-397usd-wendy", "p": "$397USD", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-500000cop-wendy", "p": "$500.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-1-000-000cop", "p": "$1.000.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-1500000cop-wendy", "p": "$1.500.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-2000000cop-wendy", "p": "$2.000.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-2500000cop-wendy", "p": "$2.500.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-3000000-wendy", "p": "$3.000.000COP", "f": "Group"}], "Lewin": [{"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-447usd-lewin", "p": "$447USD", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-397usd-lewin", "p": "$397USD", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-500000cop-lewin", "p": "$500.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-1000000cop-lewin", "p": "$1.000.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-1500000cop-lewin", "p": "$1.500.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-2000000cop-lewin", "p": "$2.000.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-2500000cop-lewin", "p": "$2.500.000COP", "f": "Group"}, {"u": "https://pay.grou.com/c/circulo-de-importadores-vsl-3000000cop-lewin", "p": "$3.000.000COP", "f": "Group"}]};
+    const pick = document.getElementById("closerPick"), box = document.getElementById("dep-closer-links");
+    const grid = document.getElementById("closerGrid"), src = document.getElementById("closerSrc");
+    const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+    const num = (p) => +String(p).replace(/[^0-9]/g, "");
+    const isUSD = (p) => /usd/i.test(p);
+    const label = (p) => { const n = num(p); return isUSD(p) ? "$" + n.toLocaleString("en-US") : "$" + n.toLocaleString("es-CO"); };
+    const cur = (p) => (isUSD(p) ? "USD" : "COP");
+    const msg = (l) => `Hola 👋 Este es tu link de pago de ${label(l.p)} ${cur(l.p)} a Círculo de Importadores:\n${l.u}`;
+    const data = Object.assign({}, SNAPSHOT), live = {};
+    let current = null;
+
+    function parseCSV(t) {
+      const rows = []; let row = [], f = "", q = false;
+      for (let i = 0; i < t.length; i++) { const c = t[i];
+        if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+        else if (c === '"') q = true; else if (c === ",") { row.push(f); f = ""; }
+        else if (c === "\n") { row.push(f); rows.push(row); row = []; f = ""; } else if (c !== "\r") f += c; }
+      if (f || row.length) { row.push(f); rows.push(row); }
+      return rows;
+    }
+    function card(l) {
+      return `<div class="pay-card">
+        <div class="pay-card__val">${label(l.p)}<small>${cur(l.p)}</small></div>
+        <div class="pay-card__actions">
+          <button class="pay-btn pay-btn--main" type="button" data-copy="${esc(msg(l))}">Copiar mensaje</button>
+          <button class="pay-btn" type="button" data-copy="${esc(l.u)}">Solo link</button>
+          <a class="pay-btn pay-btn--ghost" href="${esc(l.u)}" target="_blank" rel="noopener" title="Abrir el link">↗</a>
+        </div></div>`;
+    }
+    function render() {
+      pick.querySelectorAll(".closer-chip").forEach((b) => b.setAttribute("aria-selected", b.dataset.name === current));
+      if (!current) { box.hidden = true; return; }
+      const list = (data[current] || []).slice().sort((a, b) => (isUSD(b.p) - isUSD(a.p)) || (num(a.p) - num(b.p)));
+      box.hidden = false;
+      document.getElementById("closerName").textContent = current;
+      document.getElementById("closerInitial").textContent = current[0];
+      document.getElementById("closerCount").textContent = list.length + " links";
+      grid.innerHTML = list.length ? list.map(card).join("") : '<p class="pay-empty">Este closer todavía no tiene links en la hoja.</p>';
+      src.textContent = live[current] ? "Links en vivo desde la hoja de cada closer" : "Mostrando la última copia guardada de los links";
+    }
+    function load(name) {
+      const c = CLOSERS.find((x) => x.name === name);
+      fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${c.gid}&_=${Date.now()}`, { cache: "no-store" })
+        .then((r) => (r.ok ? r.text() : Promise.reject(r.status)))
+        .then((t) => {
+          const rows = parseCSV(t).slice(1).map((r) => ({ u: String(r[0] || "").trim(), p: String(r[1] || "").trim(), f: String(r[2] || "").trim() }))
+            .filter((l) => /^https?:/.test(l.u) && num(l.p));
+          if (rows.length) { data[name] = rows; live[name] = true; if (current === name) render(); }
+        }).catch(() => {});
+    }
+    /* 1) toca su nombre → 2) "¿Realmente eres X?" → 3) confirma y solo quedan sus links */
+    const ask = document.getElementById("closerConfirm"), step1 = document.getElementById("dep-closer");
+    const heroSub = document.getElementById("closerHeroSub");
+    let pending = null;
+    function askFor(name) {
+      pending = name;
+      document.getElementById("closerAsk").textContent = `¿Realmente eres ${name}?`;
+      document.getElementById("closerAskIni").textContent = name[0];
+      ask.hidden = false;
+      document.getElementById("closerYes").focus();
+      load(name); // va trayendo los links mientras confirma
+    }
+    function closeAsk() { ask.hidden = true; pending = null; }
+    function choose(name) {
+      current = name; closeAsk();
+      step1.hidden = true;
+      heroSub.textContent = `Hola ${name} 👋 Estos son tus links de pago. Copia el mensaje y pégalo en el chat del cliente.`;
+      render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    function reset() {
+      current = null; step1.hidden = false;
+      heroSub.textContent = "Toca tu nombre para ver tus links. Así cada venta queda registrada a tu nombre.";
+      render();
+    }
+    document.getElementById("closerYes").addEventListener("click", () => pending && choose(pending));
+    ask.addEventListener("click", (e) => { if (e.target.closest("[data-cancel]")) closeAsk(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !ask.hidden) closeAsk(); });
+    document.getElementById("closerSwitch").addEventListener("click", reset);
+    pick.innerHTML = CLOSERS.map((c) => `<button class="closer-chip" type="button" data-name="${esc(c.name)}"><span class="closer-chip__ini">${esc(c.name[0])}</span>${esc(c.name)}</button>`).join("");
+    pick.addEventListener("click", (e) => { const b = e.target.closest(".closer-chip"); if (b) askFor(b.dataset.name); });
+  })();
+  </script>
+</body>
+</html>
